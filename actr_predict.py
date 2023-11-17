@@ -18,6 +18,23 @@ def PredictVelocity(v1,v2,v3):
 
 	return predict_v , execution_time
 
+def Judgement(x1 , y1 , x2 , y2 , x3 , y3):
+
+	slope1 = (y2 - y1) / (x2 - x1)
+	slope2 = (y3 - y2) / (x3 - x2)
+	if (x1==x2 and y1==y2):
+		slope1 = float('inf')
+	if (x2==x3 and y2==y3):
+		slope2 = float('inf')
+
+	h1 = math.atan(slope1)
+	h2 = math.atan(slope2)
+	
+	if (h1 - h2) ** 2 < 3:
+		return 0	
+	else:
+		return 1
+	
 
 def PredictLocationLine(x1 , y1 , x2 , y2 , x3 , y3 , v3 , predict_v):
 	#(x1,y1) (x2,y2): historical data

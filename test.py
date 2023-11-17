@@ -43,21 +43,8 @@ for i in range(1000):
 	real_e.append(data.iloc[i+4,2])
 	real_n.append(data.iloc[i+4,3])
 
-	start_time_l = time.time()
-	d_x = 0.1 * 0.5 * (predict_speed + data.iloc[i+3,1])
 
-	slope1 = (point2[1] - point1[1]) / (point2[0] - point1[0])
-	slope2 = (point3[1] - point2[1]) / (point3[0] - point2[0])
-	if point1[0] == point2[0]:
-		slope1 = float('inf')
-	if point2[0] == point3[0]:
-		slope2 = float('inf')
-
-	h1 = math.atan(slope1)
-	h2 = math.atan(slope2)
-
-
-	if (h1 - h2) ** 2 < 3:
+	if (actr.Judgement(data.iloc[i+1,2], data.iloc[i+1,3], data.iloc[i+2,2], data.iloc[i+2,3], data.iloc[i+3,2], data.iloc[i+3,3]) == 1):
 		(predict_e , predict_n , execution_time) = actr.PredictLocationLine(data.iloc[i+1,2], data.iloc[i+1,3], data.iloc[i+2,2], data.iloc[i+2,3], data.iloc[i+3,2], data.iloc[i+3,3], v3, predict_speed)
 	else:
 		(predict_e , predict_n , execution_time) = actr.PredictLocationCircle(data.iloc[i+1,2], data.iloc[i+1,3], data.iloc[i+2,2], data.iloc[i+2,3], data.iloc[i+3,2], data.iloc[i+3,3], v3, predict_speed)
