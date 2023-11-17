@@ -5,18 +5,17 @@ actr.PredictVelocity:
   input: v1, v2, v3
 
 \
-    v1,v2: historical data
-    
+    v1,v2: historical data    
 \
-
-	  v3: current data
+    v3: current data
 
 \
   output: predict_v, execution_time
 
 \
-actr.Judgment:
 
+
+actr.Judgment:
 \
   input: x1 , y1 , x2 , y2 , x3 , y3
   \
