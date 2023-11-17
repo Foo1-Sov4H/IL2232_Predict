@@ -3,15 +3,12 @@
 actr.PredictVelocity:
 \
   input: v1, v2, v3
-
 \
     v1,v2: historical data    
 \
     v3: current data
-
 \
   output: predict_v, execution_time
-
 \
 
 
