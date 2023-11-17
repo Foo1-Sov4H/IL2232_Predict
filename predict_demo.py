@@ -5,7 +5,7 @@ import time
 import matplotlib.pyplot as plt
 
 # get TV data
-df = pd.read_csv('HMM/JRC-VC_260219_part2.csv')
+df = pd.read_csv('JRC-VC_260219_part2.csv')
 features = ['Time', 'Speed1', 'E1', 'N1']
 data = df[features]
 predict_v = []
@@ -76,7 +76,7 @@ for i in range(1000):
 	
 
 
-	if (math.atan(slope2) - math.atan(slope1)) ** 2 < 1:
+	if (math.atan(slope2) - math.atan(slope1)) ** 2 < 5:
 		d_e = math.sqrt(d_x ** 2 / (1 + slope1 ** 2))
 		d_n = slope1 * d_e
 		predict_e = d_e + data.iloc[i+3,2]

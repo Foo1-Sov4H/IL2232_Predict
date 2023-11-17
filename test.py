@@ -1,5 +1,4 @@
 import math
-import numpy as np
 import pandas as pd
 import time
 import actr_predict as actr
@@ -20,6 +19,7 @@ inaccuracies = []
 #print(data.iloc[1:20])
 
 for i in range(1000):
+	time_list.append(0.2+0.1*i)
 
 	#Predict Speed
 
@@ -48,6 +48,10 @@ for i in range(1000):
 
 	slope1 = (point2[1] - point1[1]) / (point2[0] - point1[0])
 	slope2 = (point3[1] - point2[1]) / (point3[0] - point2[0])
+	if point1[0] == point2[0]:
+		slope1 = float('inf')
+	if point2[0] == point3[0]:
+		slope2 = float('inf')
 
 	h1 = math.atan(slope1)
 	h2 = math.atan(slope2)
@@ -62,16 +66,16 @@ for i in range(1000):
 	print("Predicted Time of Location:")
 	print(execution_time)
 
-	inaccuracie = math.sqrt((predict_e - data.iloc[i+4,2]) ** 2 + (predict_n - data.iloc[i+4,3]) ** 2)
-	inaccuracies.append(inaccuracie)
+	inaccuracy = math.sqrt((predict_e - data.iloc[i+4,2]) ** 2 + (predict_n - data.iloc[i+4,3]) ** 2)
+	inaccuracies.append(inaccuracy)
 
 
-#plt.plot(time_list, predict_v, color='red')
-#plt.plot(time_list, real_v, color='blue')
-plt.plot(time_list, inaccuracies, color='blue')
+plt.plot(time_list, predict_v, color='red')
+plt.plot(time_list, real_v, color='blue')
+#plt.plot(time_list, inaccuracies, color='blue')
 plt.xlabel('Time')
-#plt.ylabel('Speed')
-plt.ylabel('Inaccuracie')
+plt.ylabel('Speed')
+#plt.ylabel('Inaccuracie')
 plt.show()
 
 	
