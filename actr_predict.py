@@ -4,6 +4,42 @@ import pandas as pd
 import time
 import matplotlib.pyplot as plt
 
+def PredictVelocity(v1,v2,v3):
+	#v1,v2: his data
+	#v3: cur data
+
+	start_time = time.time()
+
+	diff_v1 = v3 - v2
+	diff_v2 = v2 - v1
+	diff_acc = diff_v2 - diff_v1 
+	predict_v = diff_acc + diff_v2 + v3
+
+	end_time = time.time()
+	execution_time = end_time - start_time
+
+	return predict_v , execution_time
+
+
+def PredictLocation(x1 , y1 , x2 , y2 , x3 , y3 , v3 , predict_v):
+	
+	start_time = time.time()
+
+	d_x = 0.1 * 0.5 * (predict_v + v3)
+	slope1 = (y2 - y1) / (x2 - x1)
+	slope2 = (y3 - y2) / (x3 - x2)
+	
+	d_e = math.sqrt(d_x ** 2 / (1 + slope2 ** 2))
+	d_n = slope1 * d_e
+	predict_x = d_e + x3
+	predict_y = d_n + y3
+	if ((predict_x - x2) ** 2 + (predict_y - y2) ** 2) < d_x * d_x :
+		predict_x = x3 - d_e 
+		predict_y = y3 - d_n
+
+	end_time = time.time()
+	execution_time = end_time - start_time
+	return predict_x , predict_y, execution_time
 
 df = pd.read_csv('JRC-VC_260219_part2.csv')
 features = ['Time', 'Speed1', 'E1', 'N1']
