@@ -5,8 +5,8 @@ import time
 import matplotlib.pyplot as plt
 
 def PredictVelocity(v1,v2,v3):
-	#v1,v2: his data
-	#v3: cur data
+	#v1,v2: historical data
+	#v3: current data
 
 	start_time = time.time()
 
@@ -22,6 +22,8 @@ def PredictVelocity(v1,v2,v3):
 
 
 def PredictLocationLine(x1 , y1 , x2 , y2 , x3 , y3 , v3 , predict_v):
+	#(x1,y1) (x2,y2): historical data
+	#(x3,y3): current data
 
 	start_time = time.time()
 
@@ -47,7 +49,8 @@ def PredictLocationLine(x1 , y1 , x2 , y2 , x3 , y3 , v3 , predict_v):
 	return predict_x , predict_y, execution_time
 
 def PredictLocationCircle(x1 , y1 , x2 , y2 , x3 , y3 , v3 , predict_v):
-
+	#(x1,y1) (x2,y2): historical data
+	#(x3,y3): current data
 	start_time = time.time()
 
 	d_x = 0.1 * 0.5 * (predict_v + v3)
